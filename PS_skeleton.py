@@ -22,10 +22,10 @@ import pandas as pd
 # Question 1: reading and cleaning
 
 # read in the included IAT_2018.csv file
-IAT = ...
+IAT = pd.read_csv('/Users/evimyftaraj1/Documents/GitHub/lec3_files/IAT_2018.csv')
 
 # rename and reorder the variables to the following (original name->new name):
-# session_id->id
+# session_id->id  
 # genderidentity->gender
 # raceomb_002->race
 # edu->edu
@@ -38,15 +38,30 @@ IAT = ...
 # D_biep.White_Good_all->D_white_bias
 # Mn_RT_all_3467->rt
 
-IAT = ...
+IAT = IAT[['session_id', 'genderidentity', 'raceomb_002', 'edu', 'politicalid_7', 'STATE', 'att_7', 'tblacks_0to10', 'twhites_0to10', 'labels', 'D_biep.White_Good_all', 'Mn_RT_all_3467']]
+
+IAT = IAT.rename(columns = {'session_id':'id'})
+IAT = IAT.rename(columns = {'genderidentity':'gender'})
+IAT = IAT.rename(columns = {'raceomb_002':'race'})
+IAT = IAT.rename(columns = {'politicalid_7':'politic'})
+IAT = IAT.rename(columns = {'STATE':'state'})
+IAT = IAT.rename(columns = {'att_7':'attitude'})
+IAT = IAT.rename(columns = {'tblacks_0to10':'tblack'})
+IAT = IAT.rename(columns = {'twhites_0to10':'twhite'})
+IAT = IAT.rename(columns = {'D_biep.White_Good_all':'D_white_bias'})
+IAT = IAT.rename(columns = {'Mn_RT_all_3467':'rt'})
+
 
 # remove all participants that have at least one missing value
-IAT_clean = ...
+IAT_clean = IAT.dropna(axis=0,how='any')
 
 
 # check out the replace method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html
 # use this to recode gender so that 1=men and 2=women (instead of '[1]' and '[2]')
-IAT_clean ...
+
+IAT_clean.gender = IAT_clean.gender.replace(to_replace = '[1]', value = '1')
+IAT_clean.gender = IAT_clean.gender.replace(to_replace = '[2]', value = '2')
+
 
 # use this cleaned dataframe to answer the following questions
 
