@@ -79,18 +79,24 @@ IAT_clean.gender = IAT_clean.gender.replace(to_replace = '[2]', value = '2')
 # the ids of the 5 women in new york with the strongest white-good bias
 
 
-
 #%%
 # Question 3: loops and pivots
 
 # check out the unique method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.unique.html
 # use it to get a list of states
-states =...
+states = list(IAT_clean.state.unique())
+
 
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
 # store the results in a dataframe with 2 columns: state & bias
-...
+
+IAT_state = []
+for i in states:
+    if IAT_clean.state == i:
+         IAT_state = list(IAT_clean.D_white_bias[IAT_clean.state == i])
+         IAT_state.median()
+    
 
 
 # now use the pivot_table function to calculate the same statistics
@@ -99,8 +105,8 @@ state_bias=...
 # make another pivot_table that calculates median bias per state, separately 
 # for each race (organized by columns)
 state_race_bias=...
-
 #%%
+
 # Question 4: merging and more merging
 
 # add a new variable that codes for whether or not a participant identifies as 
