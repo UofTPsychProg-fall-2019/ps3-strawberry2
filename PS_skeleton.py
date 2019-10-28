@@ -153,4 +153,3 @@ print('The correlation for white participants is ' + str(censuswgbias.loc[5.0]) 
 
 
 
-
